@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:composite="http://java.sun.com/jsf/composite" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="../view/templates/mainTemplate.xhtml">
+	<ui:define name="content">
+		<div class="row">
+			<div class="col-md-4">
+				<div id="cadastroBalancoForm" class="form-group">
+					<h:form>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Tipo Ativo</th>
+									<th style="text-align:center;">Remover</th>
+								</tr>
+							</thead>
+							<tbody>
+								<ui:repeat value="#{taBean.tiposAtivo}" var="tp">
+									<tr>
+										<td><h:outputText value="#{tp.nome}" /></td>
+										<td align="center"><h:commandLink action="#{taBean.deletarTipoAtivo(tp.id)}">
+												<span class="glyphicon glyphicon-remove" />
+											</h:commandLink></td>
+									</tr>
+								</ui:repeat>
+							</tbody>
+						</table>
+						<br/>
+						<div class="form-inline">
+							<h:outputText value="Novo Tipo Ativo:&nbsp;" styleClass="form-inline" />
+							&nbsp;
+							<h:inputText value="#{taBean.nomeNovoTipoAtivo}" styleClass="form-control form-inline" style="width:75%;" />
+							&nbsp;
+							<h:commandLink action="#{taBean.salvar}" styleClass="form-inline">
+								<span class="glyphicon glyphicon-plus" />
+							</h:commandLink>
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

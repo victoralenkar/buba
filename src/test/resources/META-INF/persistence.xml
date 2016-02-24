@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence version="1.0"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+     http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd
+     http://java.sun.com/xml/ns/persistence/orm
+     http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	xmlns:orm="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/persistence">
+	
+	<persistence-unit name="saps-test" transaction-type="RESOURCE_LOCAL">	
+		
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/AMP.hbm.xml</mapping-file>
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/CicloRestritivoIncapacitante.hbm.xml</mapping-file>
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/ConclusaoLaudo.hbm.xml</mapping-file>
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/Finalidade.hbm.xml</mapping-file>
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/Grupo.hbm.xml</mapping-file>		
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/Inspecao.hbm.xml</mapping-file>
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/JuntaSaude.hbm.xml</mapping-file>
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/Laudo.hbm.xml</mapping-file>
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/LaudoRestricao.hbm.xml</mapping-file>
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/OM.hbm.xml</mapping-file>		
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/Paciente.hbm.xml</mapping-file>
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/Regra.hbm.xml</mapping-file>		
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/Restricao.hbm.xml</mapping-file>
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/Seis.hbm.xml</mapping-file>
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/SeisFinalidadeGrupo.hbm.xml</mapping-file>
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/Sequencial.hbm.xml</mapping-file>
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/Posto.hbm.xml</mapping-file>
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/SituacaoLaudo.hbm.xml</mapping-file>		
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/DistritoNaval.hbm.xml</mapping-file>
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/SituacaoMilitar.hbm.xml</mapping-file>
+		<mapping-file>br/mil/mar/dsm/sigsaude/saps/model/domain/Tipo.hbm.xml</mapping-file>
+		<properties>
+			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/BD_SINAIS_DESENV" />
+			<property name="hibernate.connection.username" value="postgres" />
+			<property name="hibernate.connection.password" value="admin" />
+			<property name="hibernate.connection.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.default_schema" value="sinaisprod"/>
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="false" />
+		</properties>
+	</persistence-unit>
+</persistence>

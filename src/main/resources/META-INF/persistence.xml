@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<persistence version="1.0"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+     		 http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd
+     		 http://java.sun.com/xml/ns/persistence/orm
+     		 http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+	xmlns:orm="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/persistence">
+
+	<persistence-unit name="buffett-pu" transaction-type="JTA">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<jta-data-source>java:/datasources/buffettDS</jta-data-source>
+
+		<properties>
+			<property name="hibernate.archive.autodetection" value="class" />
+			<!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->
+			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/BD_BUFFETT" />
+			<property name="hibernate.connection.username" value="postgres" />
+			<property name="hibernate.connection.password" value="h1v3l0g!" />
+			<property name="hibernate.connection.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.default_schema" value="sc_buffett" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="false" />
+			<property name="hibernate.id.new_generator_mappings" value="false"/>
+			<property name="hibernate.current_session_context_class" value="thread" />
+		</properties>
+
+	</persistence-unit>
+
+</persistence>

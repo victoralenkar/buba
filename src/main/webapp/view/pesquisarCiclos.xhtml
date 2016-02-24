@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:composite="http://java.sun.com/jsf/composite" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition template="../view/templates/pesquisaTemplate.xhtml">
+	<ui:define name="content">
+		<div id="pesquisaCicloForm" class="form-group">
+			<h:form styleClass="form-horizontal" id="formPesquisaCiclo">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h:outputText value="#{msg['pesquisaCiclo.titulo']}" />
+					</div>
+					<div class="panel-body">
+						<br />
+						<h:panelGrid id="grid1" columns="3" style="margin: auto;">
+							<!--  NOME -->
+							<h:outputText value="#{msg['pesquisaCiclo.paciente.nome']}:" />
+							<h:inputText value="#{cicloView.filtroPacienteCiclo.nome}" styleClass="form-control" style="width:550px;" maxlength="80" />
+							<br />
+							<br />
+							<!--  NIP -->
+							<h:outputText value="#{msg['pesquisaCiclo.paciente.nip']}:" />
+							<h:inputText value="#{cicloView.filtroPacienteCiclo.nip}" styleClass="form-control" maxlength="8" />
+							<br />
+							<br />
+							<!-- TIPO -->
+							<h:outputText value="#{msg['pesquisaCiclo.tipo']}:&nbsp;" />
+							<h:selectOneMenu id="tipo" value="#{cicloView.filtroPacienteCiclo.tipo}" styleClass="form-control">
+								<f:selectItems value="#{cicloView.listaTiposCiclos}" />
+							</h:selectOneMenu>
+							<br />
+							<br />
+							<!-- STATUS -->
+							<h:outputText value="#{msg['pesquisaCiclo.status']}:&nbsp;" />
+							<h:selectOneMenu id="status" value="#{cicloView.filtroPacienteCiclo.status}" styleClass="form-control">
+								<f:selectItems value="#{cicloView.listaStatusCiclos}" />
+							</h:selectOneMenu>
+							<br />
+							<br />
+						</h:panelGrid>
+						<br />
+						<p class="text-center">
+							<h:commandButton value="#{msg['label.pesquisar']}" action="#{cicloView.pesquisarCiclos}" update="ciclos" styleClass="btn btn-default" />
+							&nbsp;
+							<h:commandButton value="#{msg['label.limpar']}" update="ciclos" styleClass="btn btn-default" type="reset" title="Limpa os campos!" />
+						</p>
+						<h:dataTable id="ciclos" var="detalhamento" value="#{cicloView.detalhamentos}" rowClasses="linha" styleClass="table display">
+							<!-- CICLO -->
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['pesquisaCiclo.ciclo']}" />
+								</f:facet>
+								<h:commandLink action="#{cicloView.visualizarDetalhamentoCiclo}">
+									<f:setPropertyActionListener target="#{cicloView.detalhamentoSelecionado}" value="#{detalhamento}" />
+									<h:outputText value="#{detalhamento.idCiclo}" />
+								</h:commandLink>
+							</h:column>
+							<!-- NOME -->
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['pesquisaCiclo.paciente.nome']}" />
+								</f:facet>
+								<h:outputText value="#{detalhamento.nome}" />
+							</h:column>
+							<!-- NIP -->
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['pesquisaCiclo.paciente.nip']}" />
+								</f:facet>
+								<h:outputText value="#{detalhamento.nip}" />
+							</h:column>
+							<!-- STATUS -->
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['pesquisaCiclo.status']}" />
+								</f:facet>
+								<h:outputText value="#{detalhamento.status}" />
+							</h:column>
+							<!-- TIPO -->
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['pesquisaCiclo.tipo']}" />
+								</f:facet>
+								<h:outputText value="#{detalhamento.tipo}" />
+							</h:column>							
+							<!-- INSPEÇÃO -->
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['pesquisaCiclo.inspecao']}" />
+								</f:facet>
+								<h:outputText value="#{detalhamento.numeroInspecao}" />
+							</h:column>
+							<!-- DATA DO LAUDO -->
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['pesquisaCiclo.dataLaudoInspecao']}" />
+								</f:facet>
+								<h:outputText value="#{detalhamento.dataLaudoInspecaoString}" />
+							</h:column>
+							<!-- DATA DE TÉRMINO DA RESTRIÇÃO/INCAPACIDADE-->
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['pesquisaCiclo.dataTerminoRestricoes']}" />
+								</f:facet>
+								<h:outputText value="#{detalhamento.dataTerminoRestricoesString}" />
+							</h:column>
+							<!-- DATA DE TÉRMINO DA RESTRIÇÃO/INCAPACIDADE-->
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['pesquisaCiclo.restricoes']}" />
+								</f:facet>
+								<h:outputText value="#{detalhamento.resumoDescricoes}" />
+							</h:column>
+						</h:dataTable>
+						<script type="text/javascript" charset="utf-8">
+							$(document).ready(function() {
+								$('#formPesquisaCiclo-ciclos').DataTable( {
+									stateSave: true
+									} );
+							} );
+						</script>
+						<div style="text-align: center;">
+							<input type="image" src="/images/xls-icon.png" alt="Exportar para excel"
+								onclick="$('#formPesquisaCiclo-ciclos').tableExport({type:'excel',escape:'false',tableName:'pesquisa'});" />
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

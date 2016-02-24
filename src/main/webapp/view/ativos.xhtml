@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:composite="http://java.sun.com/jsf/composite" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="../view/templates/mainTemplate.xhtml">
+	<ui:define name="content">
+		<h:panelGrid id="ativos" columns="3" style="margin: auto;">
+			<h:form styleClass="form-horizontal" id="ativoForm">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Ativo</th>
+							<th>Tipo</th>
+							<th>Data Aquisição</th>
+							<th>Valor Aquisição</th>
+							<th>Quantidade</th>
+							<th>Total</th>
+							<th style="text-align: center;">Remover</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ui:repeat value="#{ativoBean.ativos}" var="at">
+							<tr>
+								<td><h:outputText value="#{at.nome}" /></td>
+								<td><h:outputText value="#{at.tipo.nome}" /></td>
+								<td><h:outputText value="#{at.dataAquisicaoString}" /></td>
+								<td><h:outputText value="#{at.valorAquisicaoString}" /></td>
+								<td><h:outputText value="#{at.quantidadeString}" /></td>
+								<td><h:outputText value="#{at.total}" /></td>
+								<td align="center"><h:commandLink action="#{ativoBean.deletarAtivo(at.id)}">
+										<span class="glyphicon glyphicon-remove" />
+									</h:commandLink></td>
+							</tr>
+						</ui:repeat>
+					</tbody>
+				</table>
+				<br />
+				<div id="ativoForm" class="form-group">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h:outputText value="Novo Ativo" />
+						</div>
+						<div class="panel-body">
+							<br />
+							<!-- TIPO ATIVO -->
+							<h:outputText value="Tipo:&nbsp;" />
+							<h:selectOneMenu value="#{ativoBean.tipoNovoAtivo.id}" styleClass="form-control">
+								<f:selectItems value="#{ativoBean.tiposAtivo}" />
+							</h:selectOneMenu>
+							<br />
+							<!-- NOME -->
+							<h:outputText value="Nome:&nbsp;" />
+							<h:inputText value="#{ativoBean.nomeNovoAtivo}" maxlength="40" styleClass="form-control"/>
+							<br />
+							<!-- DATA DE AQUISICAO -->
+							<h:outputText value="Data de Aquisi&ccedil;&atilde;o:&nbsp;" />
+							<h:inputText value="#{ativoBean.dataAquisicaoNovoAtivo}" maxlength="10" id="txtDataAquisicao" styleClass="form-control"/>
+							<br />
+							<script type="text/javascript">
+					            $(function () {
+					                $('#ativoForm-txtDataAquisicao').datepicker({
+					                    format: 'dd/mm/yyyy',
+					                    language: 'pt-BR'
+					                });
+					            });					            
+					            $("#ativoForm-txtDataAquisicao").mask("99/99/9999");
+					        </script>
+							<!-- QUANTIDADE -->
+							<h:outputText value="Quantidade:&nbsp;" />
+							<h:inputText value="#{ativoBean.qtdeNovoAtivo}" id="qtde" maxlength="40" styleClass="form-control"/>
+							<br />
+							<script type="text/javascript">
+							 	$("#ativoForm-qtde").mask("#.##0,00", {reverse: true});
+							</script>
+							<!-- VALOR AQUISICAO -->
+							<h:outputText value="Valor Aquisi&ccedil;&atilde;o:&nbsp;" />
+							<h:inputText value="#{ativoBean.valorAquisicaoNovoAtivo}" id="valaq" styleClass="form-control" />
+							<script type="text/javascript">
+							 	$("#ativoForm-valaq").mask("#.##0,00", {reverse: true});
+							</script>
+						</div>
+					</div>
+				</div>
+				<h:commandLink action="#{ativoBean.salvar}" styleClass="form-inline">
+					<span class="glyphicon glyphicon-plus" />
+				</h:commandLink>
+			</h:form>
+		</h:panelGrid>
+	</ui:define>
+</ui:composition>
+</html>

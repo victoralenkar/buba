@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<f:loadBundle basename="languages.language_pt_BR" var="msg" />
+
+<h:head>
+	<header> <ui:insert name="header" /> <ui:include
+		src="../menu.xhtml" /> </header>
+</h:head>
+<div class="container wrapper-content">
+	<div id="errorpanel" class="hidden">
+		<h:messages id="messages" showDetail="true" showSummary="false" errorClass="alert alert-danger" infoClass="alert alert-info" warnClass="alert alert-warning" />
+		<br />
+	</div>
+	<script language="JavaScript">
+		if (document.getElementById('messages').innerHTML!='') { 
+			document.getElementById('errorpanel').className='';
+		}
+	</script>
+	<ui:insert name="content" />
+</div>
+<footer>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-6">Copyright (c) Victor Haus, 2016.</div>
+	</div>
+</div>
+</footer>
+</html>

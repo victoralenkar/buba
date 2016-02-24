@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:composite="http://java.sun.com/jsf/composite" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"  xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="../view/templates/mainTemplate.xhtml">
+	<ui:define name="content">
+		<div class="wrap">
+			<div class="conteudo text-center">
+				<img src="../images/onca.png" title="error" class="img-rounded" />
+				<!-- Button trigger modal -->
+				<br /> <br />
+				<p class="text-center">
+					<!-- Em desenvolvimento -->
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Ver detalhes...</button> 
+				</p>
+				<!-- Modal -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Detalhamento do erro...</h4>
+							</div>
+							<div class="modal-body">
+								<blockquote>
+									<p>
+										<h:outputText value="#{errorHandler.message}" />
+									</p>
+								</blockquote>
+								<p>
+									<br /><strong>Código de erro:&nbsp;</strong>
+									<h:outputText value="#{errorHandler.statusCode}" />
+									<br /> <br /><strong>Tipo da exceção:&nbsp;</strong>
+									<h:outputText value="#{errorHandler.exceptionType}" />
+									<br /> <br /><strong>Classe da exceção:&nbsp;</strong>
+									<h:outputText value="#{errorHandler.exception}" />
+									<br /> <br /><strong>Local onde ocorreu:&nbsp;</strong>
+									<h:outputText value="#{errorHandler.requestURI}" />
+									<br /> <br />
+								</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<p class="text-center">
+					<button type="button" class="btn btn-primary" onclick="history.back();">Voltar...</button>
+				</p>
+				<br /> <br />
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

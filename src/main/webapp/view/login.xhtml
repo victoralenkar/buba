@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="../view/templates/loginTemplate.xhtml">
+	<ui:define name="content">
+
+		<div id="loginForm" class="form-group">
+			<h:form>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div id="aviso">
+							<h:outputText value="#{loginView.sessionExpired}" />
+						</div>
+
+						<h:messages id="messages" />
+
+						<h:panelGrid id="grid1" columns="3" style="margin: auto;">
+							<h:outputText value="#{msg['login.usuario']}:&nbsp;" />
+							<h:inputText value="#{loginView.usuario}"
+								styleClass="form-control" />
+
+							<br />
+							<br />
+
+							<h:outputText value="#{msg['login.password']}:" />
+							<h:inputSecret value="#{loginView.senha}"
+								styleClass="form-control" />
+
+							<!-- OMS -->
+							<h:outputText value="#{msg['label.om']}:&nbsp;" for="om" />
+							<h:selectOneMenu id="om" value="#{loginView.idOm}"
+								style="text-align:center;" styleClass="form-control">
+
+								<f:selectItems value="#{loginView.oms}"
+									style="text-align:center;" />
+
+							</h:selectOneMenu>
+
+						</h:panelGrid>
+						<br />
+						<p class="text-center">
+							<h:commandButton value="#{msg['login.entrar']}"
+								action="#{loginView.login}" styleClass="btn btn-default" />
+						</p>
+					</div>
+				</div>
+			</h:form>
+		</div>
+	</ui:define>
+
+</ui:composition>
+
+</html>
