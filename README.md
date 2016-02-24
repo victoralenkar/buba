@@ -1,2 +1,2 @@
 # buba
-Buffet Balance
+BUffet BAlance
